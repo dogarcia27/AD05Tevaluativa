@@ -48,5 +48,7 @@ public class Team {
 		this.manager = manager;
 	}
 	
-	
+	public Team() {
+		this("","","","");
+	}
 }

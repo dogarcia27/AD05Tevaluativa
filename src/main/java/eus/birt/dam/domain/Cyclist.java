@@ -52,4 +52,8 @@ public class Cyclist {
 		this.birthDate = birthDate;
 		this.nationality = nationality;
 	}
+	
+	public Cyclist() {
+		this("","",null,"");
+	}
 }
