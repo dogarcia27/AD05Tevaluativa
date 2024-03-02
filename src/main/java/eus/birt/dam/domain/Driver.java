@@ -11,7 +11,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,10 +22,9 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="cyclist")
-public class Cyclist {
+@Table(name="driver")
+public class Driver {
 	@Id
-	@SequenceGenerator(name = "col_gen", sequenceName = "col_sqe",schema="cyclism")
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "col_gen")
 	private Long id;
 	
@@ -39,13 +37,14 @@ public class Cyclist {
 	@DateTimeFormat (pattern = "yyyy-MM-dd")
 	private LocalDate birthDate;
 	
+	@Column
 	private String nationality;
 	
 	@ManyToOne
 	@JoinColumn (name = "team_id")
 	private Team team;
 
-	public Cyclist(String firstName, String lastName, LocalDate birthDate, String nationality) {
+	public Driver(String firstName, String lastName, LocalDate birthDate, String nationality) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -53,7 +52,4 @@ public class Cyclist {
 		this.nationality = nationality;
 	}
 	
-	public Cyclist() {
-		this("","",null,"");
-	}
 }

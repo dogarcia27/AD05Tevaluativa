@@ -10,45 +10,45 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import eus.birt.dam.domain.Cyclist;
-import eus.birt.dam.repository.CyclistRepository;
+import eus.birt.dam.domain.Driver;
+import eus.birt.dam.repository.DriverRepository;
 import eus.birt.dam.repository.TeamRepository;
 
 @Controller
-@RequestMapping ("/cyclists")
-public class CyclistController {
+@RequestMapping ("/drivers")
+public class DriverController {
 
 	@Autowired
-	CyclistRepository cyclistRepository;
+	DriverRepository driverRepo;
 	
 	@Autowired
-	TeamRepository teamRepository;
+	TeamRepository teamRepo;
 	
 	
 	@GetMapping("/delete/{id}")
 	public String initDelete(@PathVariable("id") Long id) {
-		cyclistRepository.deleteById(id);
-		return "redirect:/cyclists";
+		driverRepo.deleteById(id);
+		return "redirect:/drivers";
 	}
 	
 	@GetMapping("/new")
 	public String initCreationForm(Model model) {
-		Cyclist cyclist = new Cyclist();
-		model.addAttribute("cyclist", cyclist);
-		model.addAttribute("teams", teamRepository.findAll());
-		return "cyclistForm";
+		Driver driver = new Driver();
+		model.addAttribute("driver", driver);
+		model.addAttribute("teams", teamRepo.findAll());
+		return "driverForm";
 	}
 	
 	@PostMapping("/new/submit")
-	public String submitCreationForm(@ModelAttribute Cyclist cyclist) {
-		cyclistRepository.save(cyclist);
-		return "redirect:/cyclists/";
+	public String submitCreationForm(@ModelAttribute Driver driver) {
+		driverRepo.save(driver);
+		return "redirect:/drivers/";
 	}
 	
 	@GetMapping("/edit/{id}")
 	public String initEditForm(@PathVariable("id") Long id, Model model) {	
-		model.addAttribute("cyclist", cyclistRepository.findById(id));
-		model.addAttribute("teams", teamRepository.findAll());
-		return "cyclistForm";
+		model.addAttribute("driver", driverRepo.findById(id));
+		model.addAttribute("teams", teamRepo.findAll());
+		return "driverForm";
 	}
 }

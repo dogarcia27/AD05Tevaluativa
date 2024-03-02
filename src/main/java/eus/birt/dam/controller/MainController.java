@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import eus.birt.dam.repository.CyclistRepository;
+import eus.birt.dam.repository.DriverRepository;
 import eus.birt.dam.repository.TeamRepository;
 
 
@@ -13,24 +13,24 @@ import eus.birt.dam.repository.TeamRepository;
 	public class MainController {
 	
 	@Autowired
-   	private CyclistRepository cyclistRepository;
+   	private DriverRepository driverRepo;
 	@Autowired
-   	private TeamRepository teamRepository;
+   	private TeamRepository teamRepo;
 	
 	@GetMapping ({"/","/welcome"})
 	public String welcome() {
 		return "index";
 	}
 	
-	@GetMapping ({"/cyclists"})
+	@GetMapping ({"/drivers"})
 	public String getCyclists(Model model) {
-		model.addAttribute("cyclists", cyclistRepository.findAll());
-		return "cyclists";
+		model.addAttribute("drivers", driverRepo.findAll());
+		return "drivers";
 	}
 	
 	@GetMapping ({"/teams"})
 	public String getTeams(Model model) {
-		model.addAttribute("teams", teamRepository.findAll());
+		model.addAttribute("teams", teamRepo.findAll());
 		return "teams";
 	}
 }

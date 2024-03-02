@@ -22,9 +22,10 @@
         <td scope="row" th:text="${team.city}"></td>
         <td scope="row" th:text="${team.nationality}"></td>
         <td scope="row" th:text="${team.manager}"></td>
-        <td class="actions"><a th:href="@{/teams/edit/{id}(id=${team.id})}" class="btn btn-primary">Edit</a>   						
-							<a th:href="@{/teams/delete/{id}(id=${team.id})}" class="btn btn-danger">Delete</a>
-							</td>
+        <td class="actions">
+        	<a th:href="@{/teams/edit/{id}(id=${team.id})}" class="btn btn-primary">Edit</a>   						
+			<a th:href="@{/teams/delete/{id}(id=${team.id})}" class="btn btn-danger">Delete</a>
+		</td>
     </tr>    
 </table>
 <a th:href="@{/teams/new}" class="btn btn-success">Add new</a>   

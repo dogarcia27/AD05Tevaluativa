@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,21 +24,24 @@ import lombok.Setter;
 @Table(name="team")
 public class Team {
 	@Id
-	@SequenceGenerator(name = "col_gen2", sequenceName = "col_sqe2",schema="cyclism")
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "col_gen2")
 	private Long id;
 	
+	@Column
 	private String name;
 	
+	@Column
 	private String city;
 	
+	@Column
 	private String nationality;
 	
+	@Column
 	private String manager;
 	
 	
 	@OneToMany (mappedBy = "team",cascade = CascadeType.ALL)
-	List <Cyclist> cyclists = new ArrayList<>();
+	List <Driver> drivers = new ArrayList<>();
 
 	public Team(String name, String city, String nationality, String manager) {
 		super();
@@ -48,7 +51,5 @@ public class Team {
 		this.manager = manager;
 	}
 	
-	public Team() {
-		this("","","","");
-	}
+	
 }
